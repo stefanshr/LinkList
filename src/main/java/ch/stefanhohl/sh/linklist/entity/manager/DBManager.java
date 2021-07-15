@@ -1,8 +1,9 @@
 package ch.stefanhohl.sh.linklist.entity.manager;
 
 
-
+import ch.stefanhohl.sh.linklist.entity.Link;
 import ch.stefanhohl.sh.linklist.entity.User;
+import ch.stefanhohl.sh.linklist.entity.manager.repository.LinkRepository;
 import ch.stefanhohl.sh.linklist.entity.manager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public class DBManager {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private LinkRepository linkRepository;
 
     /**
      * searches a user object in the DB
@@ -67,6 +71,10 @@ public class DBManager {
         return users;
     }
 
+    public ArrayList<Link> getAllLinks(int id) {
+        ArrayList<Link> links = new ArrayList<>();
+     return null;
+    }
 
     /**
      * saves or updates a user object in the db
