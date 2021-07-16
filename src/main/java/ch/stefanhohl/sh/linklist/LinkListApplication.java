@@ -12,16 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class LinkListApplication {
-    @Autowired
-    private DBManager DBMANAGER;
-
-
-
-    public void fillDB(){
-
-
-
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(LinkListApplication.class, args);
