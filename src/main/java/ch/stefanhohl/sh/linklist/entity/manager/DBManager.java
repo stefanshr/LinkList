@@ -1,14 +1,19 @@
 package ch.stefanhohl.sh.linklist.entity.manager;
 
 
+import ch.stefanhohl.sh.linklist.entity.Category;
 import ch.stefanhohl.sh.linklist.entity.Link;
+import ch.stefanhohl.sh.linklist.entity.LinkList;
 import ch.stefanhohl.sh.linklist.entity.User;
+import ch.stefanhohl.sh.linklist.entity.manager.repository.CategoryRepository;
+import ch.stefanhohl.sh.linklist.entity.manager.repository.LinkListRepository;
 import ch.stefanhohl.sh.linklist.entity.manager.repository.LinkRepository;
 import ch.stefanhohl.sh.linklist.entity.manager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -24,6 +29,12 @@ public class DBManager {
 
     @Autowired
     private LinkRepository linkRepository;
+
+    @Autowired
+    private LinkListRepository linkListRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     /**
      * searches a user object in the DB
@@ -71,9 +82,54 @@ public class DBManager {
         return users;
     }
 
-    public ArrayList<Link> getAllLinks(int id) {
+    public ArrayList<Link> getAllLinks() {
         ArrayList<Link> links = new ArrayList<>();
-     return null;
+        for (Link l : linkRepository.findAll()) {
+            links.add(l);
+        }
+        return links;
+    }
+
+    public ArrayList<LinkList> getAllLinkLists() {
+        ArrayList<LinkList> linkLists = new ArrayList<>();
+        for (LinkList l : linkListRepository.findAll()) {
+            linkLists.add(l);
+        }
+        return linkLists;
+    }
+
+    public Link findLink(int id) {
+        Optional opt = linkRepository.findById(id);
+        return opt.isPresent() ? (Link) opt.get() : null;
+    }
+
+    public ArrayList<Category> getAllCategorys() {
+        ArrayList<Category> categories = new ArrayList<>();
+        for (Category c : categoryRepository.findAll()) {
+            categories.add(c);
+        }
+        return categories;
+    }
+
+    public void saveLink(Link l) {
+        linkRepository.save(l);
+    }
+
+    public void saveCategory(Category c) {
+        categoryRepository.save(c);
+    }
+
+    public void saveLinkList(LinkList l) {
+        linkListRepository.save(l);
+    }
+
+    public Category findCategoryByName(String name) {
+        for (Category c : categoryRepository.findAll()) {
+            if (c.getTitle().toLowerCase().equals(name.toLowerCase())) {
+                return c;
+            }
+        }
+        return null;
     }
 
     /**

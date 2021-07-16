@@ -28,6 +28,11 @@ public class Link {
     public Link() {
     }
 
+    public Link(String url, Category category) {
+        this.url = url;
+        this.category = category;
+    }
+
     public Category getCategory() {
         return category;
     }

@@ -24,6 +24,12 @@ public class LinkList {
     @JoinColumn(name = "user_idfs")
     private User user;
 
+
+    public LinkList(Link link, User user) {
+        this.link = link;
+        this.user = user;
+    }
+
     public int getId() {
         return id;
     }
